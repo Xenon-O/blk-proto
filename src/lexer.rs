@@ -35,17 +35,18 @@ pub fn tokenize(input: &str) -> Vec<Token> {
         match c {
             ch if ch.is_whitespace() => { chars.next(); },
             '/' => {
-                // could be comment or slash operator
+                // Recognize '/.' as the single-line comment marker (chosen to avoid conflicting with '/' container operator).
+                // Keep '/* ... */' block comments. Do NOT treat '//' as a line comment.
                 chars.next();
-                if let Some(&'/') = chars.peek() {
-                    // line comment
+                if let Some(&'.') = chars.peek() {
+                    // '/.' single-line comment marker
                     chars.next();
                     while let Some(&nc) = chars.peek() {
                         chars.next();
                         if nc == '\n' { break; }
                     }
                 } else if let Some(&'*') = chars.peek() {
-                    // block comment
+                    // block comment '/* ... */'
                     chars.next();
                     loop {
                         if let Some(nc) = chars.next() {
