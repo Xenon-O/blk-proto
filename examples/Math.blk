@@ -3,7 +3,7 @@
 // Files are containers; this file shows several ways to declare the same mapping.
 
 /. Factorial as a mapping from Real to Real (mapping-style declaration)
-factorial <- (Real; Real) = {
+factorial < (Real; Real) = {
     (0; 1),
     (n; n * factorial(n - 1)),
 },
