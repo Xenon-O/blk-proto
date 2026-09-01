@@ -2,8 +2,8 @@
 // Math utilities module (example).
 // Files are containers; this file shows several ways to declare the same mapping.
 
-/. Factorial as a mapping from Nat to Nat (mapping-style declaration)
-factorial <- (Nat; Nat) = {
+/. Factorial as a mapping from Real to Real (mapping-style declaration)
+factorial <- (Real; Real) = {
     (0; 1),
     (n; n * factorial(n - 1)),
 },
