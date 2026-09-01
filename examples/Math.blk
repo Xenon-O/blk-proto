@@ -1,0 +1,13 @@
+// Math.blk
+// A module file intended to contain math utilities (example).
+// This file is a separate container and can be referenced from other files.
+
+factorial < (Nat; Nat) = {
+    (0; 1),
+    (n; n * factorial(n - 1)),
+},
+
+// Other math utilities could go here
+sqrt <- (Real; Real) = {
+    (x; x) // placeholder
+},
