@@ -24,22 +24,18 @@ pub fn parse_program(tokens: &[Token]) -> Result<Program, String> {
 }
 
 fn parse_expr(tokens: &[Token], mut idx: usize) -> Result<(Expr, usize), String> {
+    // very small expression parser (numbers, idents, parentheses, assignment with =)
     match tokens.get(idx) {
         Some(Token::Ident(name)) => {
-            // could be assignment if next token is Equal or LessDash
             if let Some(Token::Equal) = tokens.get(idx + 1) {
-                // a = expr
                 let (rhs, ni) = parse_expr(tokens, idx + 2)?;
                 return Ok((Expr::Assign(name.clone(), Box::new(rhs)), ni));
             }
-            // identifier expression
             Ok((Expr::Ident(name.clone()), idx + 1))
         }
         Some(Token::Number(n)) => Ok((Expr::Number(*n), idx + 1)),
         Some(Token::LParen) => {
-            // parse inner until RParen
             idx += 1;
-            // detect whether we have comma-separated or semicolon-separated items
             let mut items = Vec::new();
             let mut sep_is_semicolon = false;
             loop {
@@ -61,16 +57,13 @@ fn parse_expr(tokens: &[Token], mut idx: usize) -> Result<(Expr, usize), String>
             }
         }
         Some(Token::LBrace) => {
-            // simple mapping literal parser: {(k1, k2) -> v, ...}
             idx += 1;
             let mut entries = Vec::new();
             loop {
                 if let Some(Token::RBrace) = tokens.get(idx) { idx += 1; break; }
-                // expect ( ... ) as key
                 if let Some(Token::LParen) = tokens.get(idx) {
                     let (key_expr, ni) = parse_expr(tokens, idx)?;
                     idx = ni;
-                    // expect Arrow
                     if let Some(Token::Arrow) = tokens.get(idx) { idx += 1; }
                     else { return Err("Expected -> in mapping".into()); }
                     let (val_expr, ni2) = parse_expr(tokens, idx)?;

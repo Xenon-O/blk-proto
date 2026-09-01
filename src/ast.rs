@@ -8,7 +8,7 @@ pub enum Stmt {
     Expr(Expr),
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub enum Expr {
     Ident(String),
     Number(i64),

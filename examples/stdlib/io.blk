@@ -1,0 +1,5 @@
+# Simple stdlib providing print as a runtime hook via the host (optional)
+// This file is not auto-loaded by the REPL by default; load explicitly if needed.
+
+// io.blk
+// print <- (Str; None) = (s; /* host_print s */),

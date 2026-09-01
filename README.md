@@ -1,14 +1,8 @@
-# blk-proto
+# blk-proto README
 
-Experimental prototype of the "blk" language — separator-aware, set-inspired, no-keyword systems language. Early-stage prototype.
+Evaluator/REPL branch: feat/evaluator
 
-This repository contains a minimal Rust lexer + parser scaffold demonstrating a few core concepts.
+To run REPL from this branch:
 
-Build
-
-  cargo build
-
-Run (parses examples/factorial.blk by default):
-
-  cargo run
+  cargo run --bin blk-proto
 
