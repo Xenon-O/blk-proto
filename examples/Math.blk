@@ -1,13 +1,23 @@
 // Math.blk
-// A module file intended to contain math utilities (example).
-// This file is a separate container and can be referenced from other files.
+// Math utilities module (example).
+// Files are containers; this file shows several ways to declare the same mapping.
 
-factorial < (Nat; Nat) = {
+/. Factorial as a mapping from Nat to Nat (mapping-style declaration)
+factorial <- (Nat; Nat) = {
     (0; 1),
     (n; n * factorial(n - 1)),
 },
 
-// Other math utilities could go here
-sqrt <- (Real; Real) = {
-    (x; x) // placeholder
-},
+/. Square function written using a semicolon-arg (mapping-like) form
+square <- (Real; Real) = (x; x * x),
+
+/. Alternate declaration styles demonstrating the variants you described
+/. Plain binding-style (bind a value that behaves like a function)
+square2 = (x; x * x),
+
+/. Membership declaration then separate definition (two-step style)
+square3 <- (Real; Real),
+square3 x = x * x,
+
+/. Param annotated with membership and result declared as membership
+square4 (x <- Real) <- Real = x * x,

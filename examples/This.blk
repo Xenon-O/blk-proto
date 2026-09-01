@@ -1,8 +1,12 @@
 // This.blk
 // Example that references Math.blk as a separate file/container.
-// In the language design files are containers and can be referenced without an `import` keyword.
+// Use ':./Math.blk' to refer to the Math.blk file in the same directory (loader semantics not yet enforced).
 
-:/Users/user_name/Downloads/Math.blk, /.    // stub syntax: run the Math.blk file (example)
+:./Math.blk, /. load/run the Math module (stub semantics in prototype)
 
-// Call factorial from the math module (runtime/module-resolution not implemented yet in the prototype)
+/. Examples of calling functions defined in Math.blk
 factorial 3,
+square 4,
+square2 5,
+square3 6,
+square4 7,
