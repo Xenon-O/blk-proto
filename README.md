@@ -1,2 +1,14 @@
 # blk-proto
-My experimental language "blk" (the name isn't final but will be used until I finish experimenting) that is based on set-theory, and doesn't include keywords
+
+Experimental prototype of the "blk" language — separator-aware, set-inspired, no-keyword systems language. Early-stage prototype.
+
+This repository contains a minimal Rust lexer + parser scaffold demonstrating a few core concepts.
+
+Build
+
+  cargo build
+
+Run (parses examples/factorial.blk by default):
+
+  cargo run
+

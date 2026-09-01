@@ -1,0 +1,10 @@
+Math.blk
+factorial < (Nat; Nat) = {
+    (0; 1),
+    (n; n * factorial(n - 1))
+}
+
+This.blk
+:/path/to/Math.blk, /.    # run file (stub semantics)
+
+factorial 3
